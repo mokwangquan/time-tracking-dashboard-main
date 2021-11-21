@@ -3,16 +3,28 @@
     <div class="component-container">
       <el-row type='flex' justify="center">
         <summary-panel/>
-        <el-col>
+        <el-col class="detail-container">
           <el-row type="flex" justify="start">
-            <detail-panel/>
-            <detail-panel/>
-            <detail-panel/>
+            <detail-panel
+              color="hsl(15, 100%, 70%)"
+              type="work"/>
+            <detail-panel
+              color="hsl(195, 74%, 62%)"
+              type="play"/>
+            <detail-panel
+              color="hsl(348, 100%, 68%)"
+              type="study"/>
           </el-row>
           <el-row type="flex" justify="start">
-            <detail-panel/>
-            <detail-panel/>
-            <detail-panel/>
+            <detail-panel
+              color="hsl(145, 58%, 55%)"
+              type="exercise"/>
+            <detail-panel
+              color="hsl(264, 64%, 52%)"
+              type="social"/>
+            <detail-panel
+              color="hsl(43, 84%, 65%)"
+              type="self-care"/>
           </el-row>
         </el-col>
       </el-row>
@@ -49,13 +61,17 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: hsl(226, 43%, 10%);
+  overflow: hidden;
   .component-container {
     padding: 8rem 14rem;
-    .el-row {
+    margin: 0 auto;
+    .detail-container { // FIXME: let row have 100% width
       margin: 0 0.5rem;
-      height: fit-content; // FIXME: why extra white space below
-      >* {
-        margin: 0 0.5rem;
+      >.el-row {
+        width: fit-content;
+        >* {
+          margin: 0 0.5rem;
+        }
       }
     }
   }
