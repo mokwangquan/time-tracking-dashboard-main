@@ -1,11 +1,11 @@
 <template>
   <div class="component-wrapper">
-    <div class="box top" :style="`background-color: ${color}`">
+    <div class="box top" :style="`background-color: ${color}`" :class="{ 'is-mobile' : isMobile() }">
       <el-row type="flex" justify="end">
         <img :src="`/images/icon-${type}.svg`" :alt="type+' logo'">
       </el-row>
     </div>
-    <div class="box bottom">
+    <div class="box bottom" :class="{ 'is-mobile' : isMobile() }">
       <div class="bottom-box-wrapper">
         <el-row type="flex" justify="space-between">
           <span>{{ getTypeTitle() }}</span>
@@ -13,11 +13,13 @@
             <img src="/images/icon-ellipsis.svg" alt="More">
           </div>
         </el-row>
-        <el-row class="hour-wrapper">
-          <div class="">{{ getTypeHour() }}</div>
-        </el-row>
-        <el-row class="desc-wrapper">
-          <div>{{ getDescription() }}</div>
+        <el-row :type="isMobile() ? 'flex' : ''" justify="space-between">
+          <div class="hour-wrapper">
+            <div class="">{{ getTypeHour() }}</div>
+          </div>
+          <div class="desc-wrapper" :class="{'is-mobile' : isMobile()}">
+            <div>{{ getDescription() }}</div>
+          </div>
         </el-row>
       </div>
     </div>
@@ -34,9 +36,17 @@ export default {
     type: {
       type: String,
       required: true,
+    },
+    active: { // lazy to implement this, i was focusing on the html and css only
+      type: String,
+      required: true,
     }
   },
   methods: {
+    isMobile() {
+      const rect = document.body.getBoundingClientRect()
+      return rect.width - 1 < 993
+    },
     getTypeTitle() {
       if (this.type == 'work') return 'Work'
       if (this.type == 'play') return 'Play'
@@ -82,6 +92,9 @@ export default {
       background-color: hsl(235, 46%, 20%);
       top: -7.5rem;
     }
+    &.is-mobile {
+      width: 100%;
+    }
   }
   .bottom-box-wrapper {
     padding-top: 1rem;
@@ -103,6 +116,10 @@ export default {
       font-size: 0.85rem;
       color: white;
       opacity: 0.5;
+      &.is-mobile {
+        margin-top: auto;
+        margin-bottom: 1rem;
+      }
     }
   }
 }
