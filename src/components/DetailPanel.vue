@@ -2,7 +2,7 @@
   <div class="component-wrapper">
     <div class="box top" :style="`background-color: ${color}`" :class="{ 'is-mobile' : isMobile() }">
       <el-row type="flex" justify="end">
-        <img :src="`/images/icon-${type}.svg`" :alt="type+' logo'">
+        <img :src="`${isProduction ? '/time-tracking-dashboard-main' : ''}/images/icon-${type}.svg`" :alt="type+' logo'">
       </el-row>
     </div>
     <div class="box bottom" :class="{ 'is-mobile' : isMobile() }">
@@ -10,7 +10,7 @@
         <el-row type="flex" justify="space-between">
           <span>{{ getTypeTitle() }}</span>
           <div>
-            <img src="/images/icon-ellipsis.svg" alt="More">
+            <img :src="`${isProduction ? '/time-tracking-dashboard-main' : ''}/images/icon-ellipsis.svg`" alt="More">
           </div>
         </el-row>
         <el-row :type="isMobile() ? 'flex' : ''" justify="space-between">
@@ -40,6 +40,11 @@ export default {
     active: { // lazy to implement this, i was focusing on the html and css only
       type: String,
       required: true,
+    }
+  },
+  data() {
+    return {
+      isProduction: process.env.NODE_ENV === "production"
     }
   },
   methods: {

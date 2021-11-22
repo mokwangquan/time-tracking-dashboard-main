@@ -4,7 +4,7 @@
       <div class="top-box-wrapper">
         <el-row :type="isMobile() ? 'flex' : ''" justify="space-between">
           <div class="image-wrapper" :class="isMobile() ? 'div-center' : ''">
-            <img src="/images/image-jeremy.png" alt="Jeremy Image">
+            <img :src="`${isProduction ? '/time-tracking-dashboard-main' : ''}/images/image-jeremy.png`" alt="Jeremy Image">
           </div>
           <div class="detail-wrapper" :class="isMobile() ? 'div-center is-mobile' : ''">
             <span class="description">Report for</span><br/>
