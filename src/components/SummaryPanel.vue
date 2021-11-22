@@ -31,6 +31,7 @@ export default {
   data() {
     return {
       active: 'weekly',
+      isProduction: process.env.NODE_ENV === "production"
     }
   },
   methods: {
