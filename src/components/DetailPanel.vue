@@ -37,7 +37,7 @@ export default {
       type: String,
       required: true,
     },
-    active: { // lazy to implement this, i was focusing on the html and css only
+    active: {
       type: String,
       required: true,
     }
@@ -69,12 +69,19 @@ export default {
       if (this.type == 'self-care') return '2hrs'
     },
     getDescription() {
-      if (this.type == 'work') return 'Last Week - 36hrs'
-      if (this.type == 'play') return 'Last Week - 8hrs'
-      if (this.type == 'study') return 'Last Week - 7hrs'
-      if (this.type == 'exercise') return 'Last Week - 5hrs'
-      if (this.type == 'social') return 'Last Week - 10hrs'
-      if (this.type == 'self-care') return 'Last Week - 2hrs'
+      let result = ''
+      if (this.active == 'daily') result += 'Yesterday - '
+      if (this.active == 'weekly') result += 'Last Week - '
+      if (this.active == 'monthly') result += 'Last Month - '
+
+      if (this.type == 'work') result += "36hrs"
+      if (this.type == 'play') result += '8hrs'
+      if (this.type == 'study') result += '7hrs'
+      if (this.type == 'exercise') result += '5hrs'
+      if (this.type == 'social') result += '10hrs'
+      if (this.type == 'self-care') result += '2hrs'
+
+      return result
     }
   }
 }

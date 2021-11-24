@@ -41,7 +41,6 @@ export default {
     },
     getOptionClass(active) {
       return {
-        'text-center' : true,
         'is-active' : this.active == active
       }
     }
@@ -122,7 +121,7 @@ export default {
   }
   .bottom-box-wrapper {
     position: absolute;
-    bottom: 1rem;
+    bottom: 0.5rem;
     left: 0;
     >div {
       width: fit-content;
@@ -146,9 +145,6 @@ export default {
   }
 
   //ETC
-  .text-center {
-    text-align: center;
-  }
   .div-center {
     margin: auto;
   }
